@@ -1,0 +1,2 @@
+vtx[] := Table[i <-> RandomInteger[{0, i - 1}], {i, 1, 100}];
+Graph@vtx[]
