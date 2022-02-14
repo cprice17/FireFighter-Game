@@ -1,0 +1,17 @@
+Random interconnected graphs with random number of vertices and random connections
+
+
+nvert = sample(2:15, 1) # the 2 is so that there are 2 or more vertices and the 15 is random max of vertices that I picked
+print(nvert)
+
+edges = sample(1:nvert[1], nvert[1])
+edges = c(edges, sample(1:nvert[1], nvert[1])) # This is what makes the interconnections between the vertices random
+
+i =2
+while(i<length(edges)){
+edges = append(edges, edges[i], after = i)
+i = i+2
+} # This while loop connects them
+
+ff1 = graph(edges, n = nvert[1], directed = F) # The F takes away the direction from the arrow although maybe we can explore that with fire
+plot(ff1)
