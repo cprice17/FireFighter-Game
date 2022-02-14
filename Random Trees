@@ -1,0 +1,10 @@
+Random Tree 1
+
+tree = rtree(n = sample(3:20, 1), tip.label = NULL, rooted = FALSE, equiprob = FALSE)
+plot(tree, show.tip.label = FALSE)
+nodelabels()
+tiplabels()
+
+# rooted can only be true or false and true = bifurcation and false= trifurcation
+# equiprob is whether or not each brach has the name number of leafs
+# I still need to figure out how to change the order in the numbering
