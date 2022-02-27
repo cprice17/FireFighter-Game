@@ -8,3 +8,27 @@ install.packages(readr)
 library(readr)
 adjmatrix <- read_csv("adjmatrix.csv")
 adjmatrix
+
+
+
+
+
+
+
+
+# matrix of vector centralities
+vectorCentrality = function(adjmatrix,firefighter1) {
+  n= gorder(firefighter1)
+  degVec = c()
+  degVec = rowSums(adjmatrix, na.rm=FALSE, dims=1L,...) # gives vector with sum of row i in ith place
+  for (i in 1:n) {
+    assign(deg,i) = degVec[i] #assign()? need to get variables to iterate like deg_i = ... 
+  }
+  
+  centralityV=matrix(nrow=n, ncol=3) # fill the first spot of each row with distance, second spot with deg_i value, third with pot_i value
+  for (i in 1:n) {
+    centralityV[i]=degVec[i] 
+  }
+  return(centralityV) # want this to be 3xn matrix where each row i is the centrality vector of vertex i 
+
+}
