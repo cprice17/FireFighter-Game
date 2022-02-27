@@ -1,1 +1,10 @@
-
+# for tree with 10 vertices. exports from Mathematica.
+Export["adjmatrix.csv", 
+ vtx[] := Table[i <-> RandomInteger[{0, i - 1}], {i, 1, 10}];
+ AdjacencyMatrix@vtx[]]
+ 
+# to load in R
+install.packages(readr)
+library(readr)
+adjmatrix <- read_csv("adjmatrix.csv")
+adjmatrix
