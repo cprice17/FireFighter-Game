@@ -1,4 +1,4 @@
-# for tree with 10 vertices. exports from Mathematica.
+# for tree with 11 vertices. exports from Mathematica.
 Export["adjmatrix.csv", 
  vtx[] := Table[i <-> RandomInteger[{0, i - 1}], {i, 1, 10}];
  AdjacencyMatrix@vtx[]]
