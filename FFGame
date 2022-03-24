@@ -1,15 +1,37 @@
-# for tree with 11 vertices. exports from Mathematica.
+# exports adjacency matrix of tree with 11 vertices from Mathematica
 Export["adjmatrix.csv", 
  vtx[] := Table[i <-> RandomInteger[{0, i - 1}], {i, 1, 10}];
  AdjacencyMatrix@vtx[]]
  
-# to load in R
+# loads the above matrix into R. problem: R creates a non-sqaure matrix automatically that can't be used to visualize the tree
 install.packages(readr)
 library(readr)
 adjmatrix <- read_csv("adjmatrix.csv")
 adjmatrix
 
+#full process that worked to take an adjacency matrix from Mathematica to graph in R
+  # visualizes a tree with 11 vertices in Mathematica:
+vtx[] := Table[i <-> RandomInteger[{0, i - 1}], {i, 1, 10}]
+Graph[vtx[]]
+  #click "adjacency matrix", then "display as", then "grid"
+  #copy and past grid into R
+  #combine the rows into an adjacency matrix in R (example values shown here) (need igraph installed):
+  testMatrixRow1 <- c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+testMatrixRow2 <- c(1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0)
+testMatrixRow3 <- c(0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+testMatrixRow4 <- c(0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0)
+testMatrixRow5 <- c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+testMatrixRow6 <- c(0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0)
+testMatrixRow7 <- c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+testMatrixRow8 <- c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+testMatrixRow9 <- c(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+testMatrixRow10 <- c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+testMatrixRow11 <- c(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
 
+testMatrix <- rbind(testMatrixRow1, testMatrixRow2, testMatrixRow3, testMatrixRow4, testMatrixRow5, testMatrixRow6, testMatrixRow7, testMatrixRow8, testMatrixRow9, testMatrixRow10, testMatrixRow11)
+  #visualize the new matrix in R:
+  graph_from_adjacency_matrix(testMatrix, mode=c("undirected")) %>%
+  plot()
 
 
 
